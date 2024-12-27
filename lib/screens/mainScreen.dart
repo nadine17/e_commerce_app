@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/screens/OrderConfirmationScreen.dart';
 import 'package:e_commerce_app/screens/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -86,7 +87,12 @@ class _MyWidgetState extends State<Mainscreen> {
           Icons.shopping_cart_checkout_outlined,
           color: Colors.black,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => OrderConfirmationScreen()));
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
