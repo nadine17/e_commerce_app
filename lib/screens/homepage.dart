@@ -44,7 +44,7 @@ class _HomepageState extends State<Homepage> {
         title: const Padding(
           padding: EdgeInsets.only(top: 10),
           child: Text(
-            'Hello,\nNadine',
+            'Hello,Ahmad',
             style: TextStyle(color: Colors.white),
           ),
         ),
