@@ -1,12 +1,14 @@
+import 'package:e_commerce_app/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'homepage.dart';
+
 class OrderConfirmationScreen extends StatelessWidget {
   const OrderConfirmationScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Order Confirmation',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -21,13 +23,13 @@ class OrderConfirmationScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.check_circle_outline,
               color: Colors.green,
               size: 120,
             ),
-            SizedBox(height: 30),
-            Text(
+            const SizedBox(height: 30),
+            const Text(
               'Your order has been placed successfully!✅',
               style: TextStyle(
                 fontSize: 25,
@@ -36,7 +38,7 @@ class OrderConfirmationScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Thank you for choosing our app!❤️\nYour order will arrive in 3-4 days.',
               style: TextStyle(
@@ -45,22 +47,23 @@ class OrderConfirmationScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Homepage()),
+                  MaterialPageRoute(builder: (context) => const Homepage()),
                 );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Back to Home',
                 style: TextStyle(
                   fontSize: 25,
@@ -74,8 +77,9 @@ class OrderConfirmationScreen extends StatelessWidget {
     );
   }
 }
+
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: OrderConfirmationScreen(),
     debugShowCheckedModeBanner: false,
   ));

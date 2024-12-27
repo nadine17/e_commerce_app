@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 class Homepage extends StatefulWidget {
@@ -40,9 +41,9 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(21, 21, 21, 1),
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: const Text(
+        title: const Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: Text(
             'Hello,\nNadine',
             style: TextStyle(color: Colors.white),
           ),
@@ -61,7 +62,7 @@ class _HomepageState extends State<Homepage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text(
                 'Failed to load products',
                 style: TextStyle(color: Colors.white),
@@ -80,16 +81,16 @@ class _HomepageState extends State<Homepage> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(35, 35, 39, 1),
+                        color: const Color.fromRGBO(35, 35, 39, 1),
                         borderRadius: BorderRadius.circular(25),
                       ),
-                      child: Row(
+                      child: const Row(
                         children: [
-                          const Icon(Icons.search, color: Colors.white),
-                          const SizedBox(width: 8),
+                          Icon(Icons.search, color: Colors.white),
+                          SizedBox(width: 8),
                           Expanded(
                             child: TextField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Search',
                                 hintStyle: TextStyle(color: Colors.white),
@@ -110,12 +111,12 @@ class _HomepageState extends State<Homepage> {
                       ),
                       child: Stack(
                         children: [
-                          Positioned(
+                          const Positioned(
                             top: 20,
                             left: 20,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 Text(
                                   '55 %',
                                   style: TextStyle(
@@ -183,7 +184,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     const SizedBox(height: 10),
                     ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 5,
                       itemBuilder: (context, index) {
@@ -205,7 +206,7 @@ class _HomepageState extends State<Homepage> {
 
                     GridView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, // Number of columns in the grid
@@ -229,7 +230,7 @@ class _HomepageState extends State<Homepage> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text(
                 'No products available',
                 style: TextStyle(color: Colors.white),
@@ -246,7 +247,7 @@ class _HomepageState extends State<Homepage> {
     return Container(
       width: 150,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(35, 35, 39, 1),
+        color: const Color.fromRGBO(35, 35, 39, 1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

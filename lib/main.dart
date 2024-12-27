@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/screens/homepage.dart';
 import 'package:e_commerce_app/screens/mainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
