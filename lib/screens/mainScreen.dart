@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/screens/OrderConfirmationScreen.dart';
+import 'package:e_commerce_app/screens/fav.dart';
 import 'package:e_commerce_app/screens/homepage.dart';
 import 'package:e_commerce_app/screens/sign.dart';
 import 'package:flutter/material.dart';
+import 'package:e_commerce_app/screens/search.dart';
 
 class Mainscreen extends StatefulWidget {
   const Mainscreen({super.key});
@@ -16,8 +18,8 @@ class _MyWidgetState extends State<Mainscreen> {
   // List of pages to display for each index
   final List<Widget> _pages = [
     const Homepage(),
-    const ProfilePage(),
-    const Sign(),
+    const SearchPage(),
+    const Fav(),
     const Sign(),
   ];
 
@@ -100,60 +102,6 @@ class _MyWidgetState extends State<Mainscreen> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
-  }
-}
-
-// Home page widget
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Text(
-          'Home Page',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
-
-// Emotions page widget
-class EmotionsPage extends StatelessWidget {
-  const EmotionsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Text(
-          'Explore categories',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
-
-// Profile page widget
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Text(
-          'Favorites Page',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
     );
   }
 }
