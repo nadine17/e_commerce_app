@@ -53,10 +53,10 @@ class _PaymentPageState extends State<PaymentPage> {
           'Payment',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: Colors.black,
           ),
         ),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.blue,
         centerTitle: true,
       ),
       body: Container(
