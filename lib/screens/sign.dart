@@ -6,6 +6,7 @@ class Sign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Login & Sign Up',
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.yellow,
@@ -69,7 +70,6 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(color: Colors.white)),
                   ],
                 ),
-                const SizedBox(height: 30),
                 _buildPrimaryButton('Login', () {
                   // Handle login
                 }),
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const SignUpPage()),
                   );
                 }),
-                const SizedBox(height: 20),
+
                 // Social Login Options
                 const Text('OR',
                     style: TextStyle(color: Colors.white, fontSize: 18)),

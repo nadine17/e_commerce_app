@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/screens/OrderConfirmationScreen.dart';
 import 'package:e_commerce_app/screens/homepage.dart';
+import 'package:e_commerce_app/screens/sign.dart';
 import 'package:flutter/material.dart';
 
 class Mainscreen extends StatefulWidget {
@@ -15,8 +16,9 @@ class _MyWidgetState extends State<Mainscreen> {
   // List of pages to display for each index
   final List<Widget> _pages = [
     const Homepage(),
-    const EmotionsPage(),
     const ProfilePage(),
+    const Sign(),
+    const Sign(),
   ];
 
   @override
@@ -69,12 +71,14 @@ class _MyWidgetState extends State<Mainscreen> {
               },
             ),
             IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.person,
-                color: Colors.white,
+                color: _currentIndex == 3 ? Colors.yellow : Colors.white,
               ),
               onPressed: () {
-                // Action for the profile icon
+                setState(() {
+                  _currentIndex = 3;
+                });
               },
             ),
           ],
