@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/screens/OrderConfirmationScreen.dart';
 import 'package:e_commerce_app/screens/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -13,15 +14,15 @@ class _MyWidgetState extends State<Mainscreen> {
 
   // List of pages to display for each index
   final List<Widget> _pages = [
-    Homepage(),
-    EmotionsPage(),
-    ProfilePage(),
+    const Homepage(),
+    const EmotionsPage(),
+    const ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(35, 35, 39, 1),
+      backgroundColor: const Color.fromRGBO(35, 35, 39, 1),
       body: IndexedStack(
         index: _currentIndex,
         children: _pages,
@@ -86,7 +87,13 @@ class _MyWidgetState extends State<Mainscreen> {
           Icons.shopping_cart_checkout_outlined,
           color: Colors.black,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const OrderConfirmationScreen()),
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
@@ -95,9 +102,11 @@ class _MyWidgetState extends State<Mainscreen> {
 
 // Home page widget
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: Center(
         child: Text(
@@ -111,9 +120,11 @@ class HomePage extends StatelessWidget {
 
 // Emotions page widget
 class EmotionsPage extends StatelessWidget {
+  const EmotionsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: Center(
         child: Text(
@@ -127,9 +138,11 @@ class EmotionsPage extends StatelessWidget {
 
 // Profile page widget
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: Center(
         child: Text(

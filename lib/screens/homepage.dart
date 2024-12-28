@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/screens/product_diteals.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -40,9 +41,9 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(21, 21, 21, 1),
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: const Text(
+        title: const Padding(
+          padding: EdgeInsets.only(top: 7),
+          child: Text(
             'Hello,\nNadine',
             style: TextStyle(color: Colors.white),
           ),
@@ -61,7 +62,7 @@ class _HomepageState extends State<Homepage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text(
                 'Failed to load products',
                 style: TextStyle(color: Colors.white),
@@ -80,16 +81,16 @@ class _HomepageState extends State<Homepage> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(35, 35, 39, 1),
+                        color: const Color.fromRGBO(35, 35, 39, 1),
                         borderRadius: BorderRadius.circular(25),
                       ),
-                      child: Row(
+                      child: const Row(
                         children: [
-                          const Icon(Icons.search, color: Colors.white),
-                          const SizedBox(width: 8),
+                          Icon(Icons.search, color: Colors.white),
+                          SizedBox(width: 8),
                           Expanded(
                             child: TextField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Search',
                                 hintStyle: TextStyle(color: Colors.white),
@@ -110,12 +111,12 @@ class _HomepageState extends State<Homepage> {
                       ),
                       child: Stack(
                         children: [
-                          Positioned(
+                          const Positioned(
                             top: 20,
                             left: 20,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 Text(
                                   '55 %',
                                   style: TextStyle(
@@ -161,11 +162,36 @@ class _HomepageState extends State<Homepage> {
                           final product = products[index];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: _buildProductCard(
-                              product['title'],
-                              '₹ ${product['price']}',
-                              product['image'],
-                              index, // Pass index here
+                            child: GestureDetector(
+                              onTap: () {
+                                // Navigate to the ProductDetailsScreen
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductDetailsScreen(
+                                      title: product['title'],
+                                      price: '\$ ${product['price']}',
+                                      imageUrl: product['image'],
+                                      description: product['description'],
+                                      rating: (product['rating']['rate'] is int)
+                                          ? (product['rating']['rate'] as int)
+                                              .toDouble()
+                                          : product['rating']['rate'],
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: _buildProductCard(
+                                product['title'],
+                                '\$ ${product['price']}',
+                                product['image'],
+                                (product['rating']['rate'] is int)
+                                    ? (product['rating']['rate'] as int)
+                                        .toDouble()
+                                    : product['rating']
+                                        ['rate'], // Pass rating here
+                                index, // Pass index here
+                              ),
                             ),
                           );
                         }),
@@ -183,13 +209,41 @@ class _HomepageState extends State<Homepage> {
                     ),
                     const SizedBox(height: 10),
                     ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 5,
                       itemBuilder: (context, index) {
                         final product = products[index];
-                        return _buildListTile(product['title'],
-                            '₹ ${product['price']}', product['image'], index);
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetailsScreen(
+                                  title: product['title'],
+                                  price: '\$ ${product['price']}',
+                                  imageUrl: product['image'],
+                                  description: product['description'],
+                                  rating: (product['rating']['rate'] is int)
+                                      ? (product['rating']['rate'] as int)
+                                          .toDouble()
+                                      : product['rating']['rate'],
+                                ),
+                              ),
+                            );
+                          },
+                          child: _buildListTile(
+                              product['title'],
+                              '\$ ${product['price']}',
+                              product['image'],
+                              (product['rating']['rate'] is int)
+                                  ? (product['rating']['rate'] as int)
+                                      .toDouble()
+                                  : product['rating']
+                                      ['rate'], // Pass rating here
+                              index,
+                              product['description']),
+                        );
                       },
                     ),
                     const SizedBox(height: 10),
@@ -205,7 +259,7 @@ class _HomepageState extends State<Homepage> {
 
                     GridView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, // Number of columns in the grid
@@ -216,11 +270,33 @@ class _HomepageState extends State<Homepage> {
                       itemCount: 7,
                       itemBuilder: (context, index) {
                         final product = products[index];
-                        return _buildProductCard(
-                          product['title'],
-                          '₹ ${product['price']}',
-                          product['image'],
-                          index,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetailsScreen(
+                                  title: product['title'],
+                                  price: '\$ ${product['price']}',
+                                  imageUrl: product['image'],
+                                  description: product['description'],
+                                  rating: (product['rating']['rate'] is int)
+                                      ? (product['rating']['rate'] as int)
+                                          .toDouble()
+                                      : product['rating']['rate'],
+                                ),
+                              ),
+                            );
+                          },
+                          child: _buildProductCard(
+                            product['title'],
+                            '\$ ${product['price']}',
+                            product['image'],
+                            (product['rating']['rate'] is int)
+                                ? (product['rating']['rate'] as int).toDouble()
+                                : product['rating']['rate'], // Pass rating here
+                            index,
+                          ),
                         );
                       },
                     ),
@@ -229,7 +305,7 @@ class _HomepageState extends State<Homepage> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text(
                 'No products available',
                 style: TextStyle(color: Colors.white),
@@ -242,11 +318,16 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget _buildProductCard(
-      String title, String price, String imageUrl, int index) {
+    String title,
+    String price,
+    String imageUrl,
+    double rating,
+    int index,
+  ) {
     return Container(
       width: 150,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(35, 35, 39, 1),
+        color: const Color.fromRGBO(35, 35, 39, 1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -266,41 +347,44 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
           ),
+          const SizedBox(height: 8),
           // Product Title
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
               title,
-              style: const TextStyle(color: Colors.white),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
+          const SizedBox(height: 4),
           // Product Price
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   price,
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255)),
+                  style: const TextStyle(color: Colors.white),
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _favorites[index] = !_favorites[
-                          index]; // Toggle favorite state for the product
-                    });
-                  },
-                  icon: Icon(
-                    _favorites[index] ? Icons.favorite : Icons.favorite_border,
-                    color: _favorites[index]
-                        ? Colors.yellow
-                        : Colors.white, // Toggle color based on state
-                  ),
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "$rating",
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    const Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                      size: 15,
+                    )
+                  ],
+                )
               ],
             ),
           ),
@@ -309,8 +393,8 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  Widget _buildListTile(
-      String title, String price, String imageUrl, int index) {
+  Widget _buildListTile(String title, String price, String imageUrl,
+      double rating, int index, String description) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
@@ -331,34 +415,53 @@ class _HomepageState extends State<Homepage> {
             },
           ),
         ),
-        title: Text(
-          title,
-          style: const TextStyle(color: Colors.white),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
+        title: Column(
+          children: [
+            Text(
+              maxLines: 1,
+              title,
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              maxLines: 2,
+              description,
+              style: const TextStyle(
+                  color: Color.fromARGB(255, 184, 184, 184), fontSize: 12),
+            )
+          ],
         ),
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              price,
-              style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-            ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  _favorites[index] = !_favorites[
-                      index]; // Toggle the favorite state for the specific product
-                });
-              },
-              icon: Icon(
-                _favorites[index] ? Icons.favorite : Icons.favorite_border,
-                color: _favorites[index]
-                    ? Colors.yellow
-                    : Colors.white, // Change color based on state
-              ),
+            Text(price, style: const TextStyle(color: Colors.white)),
+            Row(
+              children: [
+                Text(
+                  "$rating",
+                  style: const TextStyle(color: Colors.white),
+                ),
+                const Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                  size: 15,
+                )
+              ],
             ),
           ],
+        ),
+        trailing: IconButton(
+          onPressed: () {
+            setState(() {
+              _favorites[index] = !_favorites[
+                  index]; // Toggle the favorite state for the specific product
+            });
+          },
+          icon: Icon(
+            _favorites[index] ? Icons.favorite : Icons.favorite_border,
+            color: _favorites[index]
+                ? Colors.yellow
+                : Colors.white, // Change color based on state
+          ),
         ),
       ),
     );
