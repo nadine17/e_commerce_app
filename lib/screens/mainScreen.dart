@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/screens/OrderConfirmationScreen.dart';
+import 'package:e_commerce_app/screens/fav.dart';
 import 'package:e_commerce_app/screens/homepage.dart';
 import 'package:e_commerce_app/screens/sign.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _MyWidgetState extends State<Mainscreen> {
   final List<Widget> _pages = [
     const Homepage(),
     const ProfilePage(),
-    const Sign(),
+    const Fav(),
     const Sign(),
   ];
 

@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:e_commerce_app/screens/mainScreen.dart';
+import 'package:e_commerce_app/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           textTheme: GoogleFonts.poppinsTextTheme()),
       debugShowCheckedModeBanner: false,
-      home: const Mainscreen(),
+      home: const Splash(),
     );
   }
 }
