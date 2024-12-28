@@ -53,207 +53,251 @@ class _PaymentPageState extends State<PaymentPage> {
           'Payment',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: Colors.blue,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.grey[900],
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Select Payment Method',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            ListTile(
-              title: Text('Credit Card'),
-              leading: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.credit_card, color: Colors.blue),
-                  SizedBox(width: 8),
-                  Radio<String>(
-                    value: 'Credit Card',
-                    groupValue: selectedPaymentMethod,
-                    onChanged: _onPaymentMethodChanged,
-                  ),
-                ],
+      body: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Select Payment Method',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            ListTile(
-              title: Text('PayPal'),
-              leading: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.account_balance_wallet, color: Colors.blue),
-                  SizedBox(width: 8),
-                  Radio<String>(
-                    value: 'PayPal',
-                    groupValue: selectedPaymentMethod,
-                    onChanged: _onPaymentMethodChanged,
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Text('Apple Pay'),
-              leading: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.apple, color: Colors.blue),
-                  SizedBox(width: 8),
-                  Radio<String>(
-                    value: 'Apple Pay',
-                    groupValue: selectedPaymentMethod,
-                    onChanged: _onPaymentMethodChanged,
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Text('Cash on Delivery'),
-              leading: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.local_shipping, color: Colors.blue),
-                  SizedBox(width: 8),
-                  Radio<String>(
-                    value: 'Cash on Delivery',
-                    groupValue: selectedPaymentMethod,
-                    onChanged: _onPaymentMethodChanged,
-                  ),
-                ],
-              ),
-            ),
-            if (selectedPaymentMethod != null)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 20),
-                  if (selectedPaymentMethod == 'Credit Card') ...[
-                    Text(
-                      'Enter Card Details:',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            controller: _cardNumberController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Card Number',
-                            ),
-                            keyboardType: TextInputType.number,
-                          ),
-                          SizedBox(height: 10),
-                          TextFormField(
-                            controller: _expiryDateController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Expiry Date (MM/YY)',
-                            ),
-                            keyboardType: TextInputType.datetime,
-                          ),
-                          SizedBox(height: 10),
-                          TextFormField(
-                            controller: _cvvController,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'CVV',
-                            ),
-                            keyboardType: TextInputType.number,
-                            obscureText: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ] else if (selectedPaymentMethod == 'PayPal') ...[
-                    Text(
-                      'Enter PayPal Email:',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    TextField(
-                      controller: _addressController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Email Address',
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                  ] else if (selectedPaymentMethod == 'Apple Pay') ...[
-                    Text(
-                      'Enter Apple Pay Information:',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    TextField(
-                      controller: _applePayController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Apple Pay Account Info',
-                      ),
-                    ),
-                  ] else if (selectedPaymentMethod == 'Cash on Delivery') ...[
-                    Text(
-                      'Enter Delivery Address:',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    TextField(
-                      controller: _addressController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'City',
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    TextField(
-                      controller: _cityController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Street Address',
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    TextField(
-                      controller: _postalCodeController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Postal Code',
-                      ),
-                      keyboardType: TextInputType.number,
+              ListTile(
+                title: Text('Credit Card', style: TextStyle(color: Colors.white)),
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.credit_card, color: Colors.blue),
+                    SizedBox(width: 8),
+                    Radio<String>(
+                      value: 'Credit Card',
+                      groupValue: selectedPaymentMethod,
+                      onChanged: _onPaymentMethodChanged,
+                      fillColor: MaterialStateProperty.all(Colors.white),
                     ),
                   ],
-                ],
-              ),
-            Spacer(),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => OrderConfirmationScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: Text(
-                  'Confirm Order',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white,
-                  ),
                 ),
               ),
-            ),
-          ],
+              ListTile(
+                title: Text('PayPal', style: TextStyle(color: Colors.white)),
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.account_balance_wallet, color: Colors.blue),
+                    SizedBox(width: 8),
+                    Radio<String>(
+                      value: 'PayPal',
+                      groupValue: selectedPaymentMethod,
+                      onChanged: _onPaymentMethodChanged,
+                      fillColor: MaterialStateProperty.all(Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text('Apple Pay', style: TextStyle(color: Colors.white)),
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.apple, color: Colors.blue),
+                    SizedBox(width: 8),
+                    Radio<String>(
+                      value: 'Apple Pay',
+                      groupValue: selectedPaymentMethod,
+                      onChanged: _onPaymentMethodChanged,
+                      fillColor: MaterialStateProperty.all(Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text('Cash on Delivery', style: TextStyle(color: Colors.white)),
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.local_shipping, color: Colors.blue),
+                    SizedBox(width: 8),
+                    Radio<String>(
+                      value: 'Cash on Delivery',
+                      groupValue: selectedPaymentMethod,
+                      onChanged: _onPaymentMethodChanged,
+                      fillColor: MaterialStateProperty.all(Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+              if (selectedPaymentMethod != null)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    if (selectedPaymentMethod == 'Credit Card') ...[
+                      Text(
+                        'Enter Card Details:',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              controller: _cardNumberController,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Card Number',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                filled: true,
+                                fillColor: Colors.grey[800],
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType.number,
+                            ),
+                            SizedBox(height: 10),
+                            TextFormField(
+                              controller: _expiryDateController,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Expiry Date (MM/YY)',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                filled: true,
+                                fillColor: Colors.grey[800],
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType.datetime,
+                            ),
+                            SizedBox(height: 10),
+                            TextFormField(
+                              controller: _cvvController,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'CVV',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                filled: true,
+                                fillColor: Colors.grey[800],
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              keyboardType: TextInputType.number,
+                              obscureText: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ] else if (selectedPaymentMethod == 'PayPal') ...[
+                      Text(
+                        'Enter PayPal Email:',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      TextField(
+                        controller: _addressController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Email Address',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          filled: true,
+                          fillColor: Colors.grey[800],
+                        ),
+                        style: TextStyle(color: Colors.white),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                    ] else if (selectedPaymentMethod == 'Apple Pay') ...[
+                      Text(
+                        'Enter Apple Pay Information:',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      TextField(
+                        controller: _applePayController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Apple Pay Account Info',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          filled: true,
+                          fillColor: Colors.grey[800],
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ] else if (selectedPaymentMethod == 'Cash on Delivery') ...[
+                      Text(
+                        'Enter Delivery Address:',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      TextField(
+                        controller: _addressController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Street Address',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          filled: true,
+                          fillColor: Colors.grey[800],
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      SizedBox(height: 10),
+                      TextField(
+                        controller: _cityController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'City',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          filled: true,
+                          fillColor: Colors.grey[800],
+                        ),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      SizedBox(height: 10),
+                      TextField(
+                        controller: _postalCodeController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Postal Code',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          filled: true,
+                          fillColor: Colors.grey[800],
+                        ),
+                        style: TextStyle(color: Colors.white),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ],
+                  ],
+                ),
+              Spacer(),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => OrderConfirmationScreen()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: Text(
+                    'Confirm Order',
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -262,6 +306,12 @@ class _PaymentPageState extends State<PaymentPage> {
 
 void main() {
   runApp(MaterialApp(
+    theme: ThemeData.dark().copyWith(
+      scaffoldBackgroundColor: Colors.black,
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.grey[900],
+      ),
+    ),
     home: PaymentPage(),
     debugShowCheckedModeBanner: false,
   ));
