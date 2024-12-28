@@ -2,6 +2,7 @@ import 'package:e_commerce_app/screens/OrderConfirmationScreen.dart';
 import 'package:e_commerce_app/screens/homepage.dart';
 import 'package:e_commerce_app/screens/sign.dart';
 import 'package:flutter/material.dart';
+import 'package:e_commerce_app/screens/search.dart';
 
 class Mainscreen extends StatefulWidget {
   const Mainscreen({super.key});
@@ -16,6 +17,7 @@ class _MyWidgetState extends State<Mainscreen> {
   // List of pages to display for each index
   final List<Widget> _pages = [
     const Homepage(),
+    const SearchPage(),
     const ProfilePage(),
     const Sign(),
     const Sign(),
@@ -48,16 +50,17 @@ class _MyWidgetState extends State<Mainscreen> {
               },
             ),
             IconButton(
-              icon: Icon(
-                Icons.search,
-                color: _currentIndex == 1 ? Colors.yellow : Colors.white,
-              ),
-              onPressed: () {
-                setState(() {
-                  _currentIndex = 1;
-                });
-              },
-            ),
+  icon: Icon(
+    Icons.search,
+    color: _currentIndex == 1 ? Colors.yellow : Colors.white,
+  ),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SearchPage()),
+    );
+  },
+),
             const SizedBox(width: 48), // Space for the FAB
             IconButton(
               icon: Icon(
