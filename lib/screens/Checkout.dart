@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'payment.dart';  // Import the PaymentPage class file
 
 class CheckoutPage extends StatefulWidget {
   final double totalAmount;  // Accept total amount from ShoppingPage
@@ -76,22 +77,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
-                      // Show order summary
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('Order Summary'),
-                          content: Text(
-                            'Shipping to: $_selectedAddress\nPayment Method: $_selectedPaymentMethod',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('OK'),
-                            ),
-                          ],
+                      // Navigate to PaymentPage
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PaymentPage(), // Navigate to PaymentPage
                         ),
                       );
                     },
